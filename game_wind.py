@@ -10,6 +10,7 @@ import game_functions as gf
 from settings import Settings
 from ship import Ship
 from bullets import Bullet
+from alien import Alien
 
 
 
@@ -35,6 +36,15 @@ def run_game():
     # Make a group to store bullets in.
     bullets = Group()
 
+    # Making Aliens
+    alien = Alien(ai_settings, screen)
+
+    # Let's make a group of aliens
+    aliens = Group()
+
+    # Fleet of aliens
+    gf.create_fleet(ai_settings, screen, aliens)
+
     ## Start main loop for the game.
     while True:
 
@@ -42,14 +52,15 @@ def run_game():
         gf.check_events(ai_settings,screen, ship, bullets)
         ship.update()
         bullets.update()
-
         # getting rid of used bullets
         for bullet in bullets.copy():
             if bullet.rect.bottom <= 0:
                 bullets.remove(bullet)
 
+        gf.update_aliens(ai_settings, screen, aliens)
+
         # Updates screen
-        gf.update_screen(ai_settings, screen, ship, bullets)
+        gf.update_screen(ai_settings, screen, ship, bullets, aliens)
 
 #### Testing whether game screen code is correct ####
 run_game()
