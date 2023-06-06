@@ -1,4 +1,5 @@
 # Python Programs
+# I know. README needs work!!
 
 This repo contains files for running a game called Alien Invasion. Refer the book Python Crash Course for details.
 
